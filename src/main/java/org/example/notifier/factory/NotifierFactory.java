@@ -3,6 +3,7 @@ package org.example.notifier.factory;
 import org.example.notifier.enums.ContactType;
 import org.example.notifier.service.Notifier;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -19,7 +20,7 @@ public class NotifierFactory {
 
     public Notifier getNotifier(ContactType contactType) {
         Notifier notifier = notifierMap.get(contactType);
-        if (notifier == null) {
+        if (ObjectUtils.isEmpty(notifier)) {
             throw new IllegalArgumentException("Unsupported type: " + contactType);
         }
         return notifier;
